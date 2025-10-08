@@ -1,0 +1,46 @@
+# Bike Buyer Story — Tableau Workbook and PNG Previews
+
+This branch contains a Tableau-ready dataset and an automated pipeline to generate PNG previews for a 4‑visualization story about who buys bikes.
+
+Contents
+- data/Bikers buyer.csv — source dataset (as provided)
+- workbook/Bike-Buyer-Story.twb — Tableau workbook (open in Desktop; File > Save As > .twbx to package)
+- images/ — generated PNG previews of the four visuals
+- scripts/generate_images.py — builds PNGs from the CSV
+- requirements.txt — Python dependencies for local rendering
+- .github/workflows/build-images.yml — CI job to generate and commit PNGs on push
+
+Open the workbook
+1) Open `workbook/Bike-Buyer-Story.twb` in Tableau Desktop.
+2) If prompted for the data source, point to `data/Bikers buyer.csv`.
+3) The four sheets and dashboard are built per the story plan below.
+
+Convert to .twbx (packaged workbook)
+- File > Save As > “Tableau Packaged Workbook (*.twbx)” to create a single file including data.
+
+What the four visuals show
+1) Shorter Commutes, Higher Bike Buying — 100% stacked bar comparing purchase share by commute distance.
+2) Fewer Cars, More Bikes — ranked row bars of purchase rate by number of cars.
+3) The Commute Effect by Region — heatmap of purchase rate by Region × Commute Distance.
+4) Bike Buying Peaks in Midlife — lollipop chart of purchase rate by age group.
+
+PNG previews
+- A GitHub Action builds four PNGs to `images/`:
+  - `viz1_commute_100pct.png`
+  - `viz2_cars_rowbar.png`
+  - `viz3_region_commute_heatmap.png`
+  - `viz4_age_lollipop.png`
+- The workflow runs automatically on pushes to the `tableau-viz` branch and commits the generated images.
+
+Local generation (optional)
+- Python 3.10+
+- `pip install -r requirements.txt`
+- `python scripts/generate_images.py`
+
+Color & formatting
+- Yes/positive = blue (#2C7FB8), No/neutral = gray (#BDBDBD)
+- Percent labels where applicable; y-axis from 0%; clear descriptive titles.
+
+Notes
+- If you move files, re-point the data source when opening the `.twb`.
+- You can export high‑res images via Worksheet > Export > Image in Tableau, or use the included Python script for quick previews.
